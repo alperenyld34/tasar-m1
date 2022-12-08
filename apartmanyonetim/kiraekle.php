@@ -1,0 +1,110 @@
+<?php 
+include 'header.php';
+include 'islemler/baglan.php';
+if (yetkikontrol()!="yetkili") {
+  header("location:index.php?durum=izinsiz");
+  exit;
+}
+
+ $a=$db->prepare("SELECT * FROM `daire` ");
+        $a->execute(array());
+        $c=$a->fetchAll(PDO::FETCH_ASSOC);
+        $m=$a->rowCount();
+       
+
+?>
+<link rel="stylesheet" media="all" type="text/css" href="vendor/upload/css/fileinput.min.css">
+<link rel="stylesheet" type="text/css" media="all" href="vendor/upload/themes/explorer-fas/theme.min.css">
+<script src="vendor/upload/js/fileinput.js" type="text/javascript" charset="utf-8"></script>
+<script src="vendor/upload/themes/fas/theme.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="vendor/upload/themes/explorer-fas/theme.minn.js" type="text/javascript" charset="utf-8"></script>
+<!-- Begin Page Content -->
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h5 class="m-0 font-weight-bold text-primary">kira Ekle</h5>
+    </div>
+    <div class="card-body">
+      <form action="islemler/islem.php" method="POST" enctype="multipart/form-data"  data-parsley-validate>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>kira ücreti</label>
+            <input type="text" class="form-control"  required="" name="daire_kira" placeholder="kira ücreti">
+          </div>
+		  
+		  
+		   <div class="form-group col-md-6">
+            <label>kira tarihi</label>
+            <input type="date" class="form-control"  required="" name="kira_tarihi" placeholder="kira tarihi">
+          </div>
+         
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>kira durumu</label>
+            <select required="" name="kira_durum" class="form-control">
+              <?php foreach (kiradurum() as $key => $value): ?>
+                <option value="<?php echo $key ?>"><?php echo $value ?></option>
+              <?php endforeach ?>
+            </select>
+          </div>
+
+           <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>daire sakini</label>
+            <select required="" name="daire_sakini" class="form-control">
+              <?
+            if($m){
+          foreach($c as $d){
+            ?>
+               <?php echo $d["daire_sakini"]; ?> 
+            <?
+          }
+
+        }else{
+              echo "daire sakinleri bulunamadi";
+        }
+			
+       
+      
+       ?>
+            </select>
+			
+          </div>
+		  
+		
+		  
+      
+		
+        <div class="form-row justify-content-center">
+         <div class="col-md-6">
+          <div class="file-loading">
+            <input class="form-control" id="kira_dosya" name="kira_dosya" type="file">
+          </div>
+        </div>
+      </div>
+      <div class="form-row mt-2">
+        <div class="form-group col-md-12">
+          <textarea class="ckeditor" name="kira_detay" id="editor"></textarea>
+        </div>
+      </div>
+      <button type="submit" name="kiraekle" class="btn btn-primary">Kaydet</button>
+    </form>
+  </div>
+</div>
+</div>
+<!-- End of Main Content -->
+<?php include 'footer.php' ?>
+
+<script>
+  $(document).ready(function () {
+    var url1='<?php echo $ayarcek['site_logo'] ?>';
+    $("#kira_dosya").fileinput({
+      'theme': 'explorer-fas',
+      'showUpload': false,
+      'showCaption': true,
+      showDownload: true,
+      allowedFileExtensions: ["jpg", "png", "jpeg","mp4","zip","rar"],
+    });
+  });
+</script>
