@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <title>
-    Site Yönetimi
+   Site Yönetim
   </title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -27,56 +26,66 @@
   <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.1" rel="stylesheet" />
 </head>
 
-<body class="bg-gray-200">
-  <div class="container position-sticky z-index-sticky top-0">
-    <div class="row">
-      <div class="col-12">
-      </div>
-    </div>
-  </div>
+<body class="">
   <main class="main-content  mt-0">
-    <div class="page-header align-items-start min-vh-100" style="background-image: url(assets/img/site.jpeg);">
-      <span class="mask bg-gradient-dark opacity-6"></span>
-      <div class="container my-auto">
-        <div class="row">
-          <div class="col-lg-4 col-md-8 col-12 mx-auto">
-            <div class="card z-index-0 fadeIn3 fadeInBottom">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0"> Site Yönetim </h4>
-                
-                </div>
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+              <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url(assets/img/site.jpeg); background-size:cover;">
               </div>
-              <div class="card-body">
-                <form role="form" class="text-start">
+            </div>
+            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+              <div class="card card-plain">
+                <div class="card-header">
+                  <h4 class="font-weight-bolder">Şifreyi Değiştirin</h4>
+                  <p class="mb-0">Site Yönetim uygulamasına giriş yapmak için kullandığınız şifrenizi 
+                    <span class="text-danger"> kayıt olduğunuz bilgileri girerek   </span> değiştirebilirsiniz.</p>
+                  <i class="material-icons text-danger p-2">warning </i><span class="text-danger"> Telefon numaranızı başında 0 olmadan giriniz. </span>
+                </div>
+                <div class="card-body">
+                <form role="form" id="gidenForm" class="text-start">
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">TC Kimlik Numarası</label>
-                    <input type="number" id="tc" class="form-control">
+                    <label class="form-label">TC Kimlik Numaranız</label>
+                    <input type="number" pattern="\d*" required maxlength="11" class="form-control" id="tc">
                   </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Şifre</label>
-                    <input type="password" id="sifre" class="form-control">
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">Cep Telefonu Numaranız</label>
+                    <input type="number" pattern="\d*" required maxlength="10" class="form-control"  id="tel" maxlength="10">
+                  </div>
+                  <div class="input-group input-group-outline my-3 focused is-focused">
+                    <label class="form-label">Blok (Seçiniz)</label>
+                     <select class="form-control" id="blok">
+                      <option value="A">A</option>
+                    </select>
+                  </div>
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">Daire No</label>
+                    <input type="number" class="form-control" id="daireno">
+                  </div>
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">Yeni Şifreniz</label>
+                    <input type="password" class="form-control" id="sifre">
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2" id="send">Giriş</button>
+                    <input id="send" class="btn bg-gradient-primary w-100 my-4 mb-2" value="Şifreyi Değiştir">
                   </div>
-                  <p class="mt-4 text-sm text-center">
-                    Üye değilseniz tıklayın. 
-                    <a href="kaydol.php" class="text-primary text-gradient font-weight-bold">Kaydol</a>
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                    Şifrenizi unuttuysanız tıklayın. 
-                    <a href="sifremiunuttum.php" class="text-primary text-gradient font-weight-bold">Şifremi Unuttum</a>
-                  </p>
                 </form>
-                <div id="sonuc"></div>
+                </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                  <p class="mb-2 text-sm mx-auto">
+                   Şifrenizi biliyor musunuz? 
+                    <a href="index.php" class="text-primary text-gradient font-weight-bold">Giriş Yapın</a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card mt-4" style="display: none;">
+      <div id="sonuc"></div>
+      <div class="card mt-4" style="display: none;">
             <div class="card-header p-3">
               <h5 class="mb-0">Notifications</h5>
               <p class="text-sm mb-0">
@@ -98,6 +107,15 @@
                 <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-2">
                   <button class="btn bg-gradient-danger w-100 mb-0 toast-btn" type="button" id="dangerButton" data-target="dangerToast">Danger</button>
                 </div>
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-2">
+                  <button class="btn bg-gradient-danger w-100 mb-0 toast-btn" type="button" id="dikkatButton" data-target="dikkatToast">Danger</button>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-2">
+                  <button class="btn bg-gradient-danger w-100 mb-0 toast-btn" type="button" id="evdoluButton" data-target="evdoluToast">Danger</button>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-2">
+                  <button class="btn bg-gradient-danger w-100 mb-0 toast-btn" type="button" id="evyokButton" data-target="evyoktoast">Danger</button>
+                </div>
               </div>
             </div>
           </div>
@@ -115,7 +133,7 @@
           </div>
           <hr class="horizontal dark m-0">
           <div class="toast-body">
-            Ücret Eklendi.
+            Şifreniz değiştirildi. Giriş Yapabilirsiniz.
           </div>
         </div>
         <div class="toast fade hide p-2 mt-2 bg-gradient-info" role="alert" aria-live="assertive" id="infoToast" aria-atomic="true">
@@ -143,7 +161,49 @@
           </div>
           <hr class="horizontal dark m-0">
           <div class="toast-body">
-            Kullanıcı adı ya da şifre yanlış. Tekrar deneyiniz.
+            Kayıt olmanız için KVKK aydınlatma metnini okuyup, onaylamanız gerekmektedir.
+          </div>
+        </div>
+        <div class="toast fade hide p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="dikkatToast" aria-atomic="true">
+          <div class="toast-header border-0">
+            <i class="material-icons text-warning me-2">
+        travel_explore
+      </i>
+            <span class="me-auto font-weight-bold">Site Yönetimi </span>
+            <small class="text-body">Şimdi</small>
+            <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+          </div>
+          <hr class="horizontal dark m-0">
+          <div class="toast-body">
+            Lütfen tüm bilgileri doğru ve eksiksiz giriniz.
+          </div>
+        </div>
+        <div class="toast fade hide p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="evyoktoast" aria-atomic="true">
+          <div class="toast-header border-0">
+            <i class="material-icons text-warning me-2">
+              travel_explore
+            </i>
+            <span class="me-auto font-weight-bold">Site Yönetimi </span>
+            <small class="text-body">Şimdi</small>
+            <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+          </div>
+          <hr class="horizontal dark m-0">
+          <div class="toast-body">
+            Böyle bir blok ya da daire bulunamamaktadır.
+          </div>
+        </div>
+        <div class="toast fade hide p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="evdoluToast" aria-atomic="true">
+          <div class="toast-header border-0">
+            <i class="material-icons text-warning me-2">
+        travel_explore
+      </i>
+            <span class="me-auto font-weight-bold">Site Yönetimi </span>
+            <small class="text-body">Şimdi</small>
+            <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+          </div>
+          <hr class="horizontal dark m-0">
+          <div class="toast-body">
+            Bu daire dolu görünüyor. Lütfen yönetici ile iletişime geçiniz.
           </div>
         </div>
         <div class="toast fade hide p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="dangerToast" aria-atomic="true">
@@ -161,11 +221,10 @@
           </div>
         </div>
       </div>
-    </div>
-
+    </section>
   </main>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--   Core JS Files   -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -186,20 +245,18 @@
 </body>
 </html>
 <script>
-$('#send').click(
-  function(){
-  var data = 'tc='+$('#tc').val() + '&sifre='+$('#sifre').val();
-  $.ajax({
-    type: 'POST',
-    url: 'login.php',
-    data: data,
-    success:function(cevap){
-      if(cevap.search("script")>0) {
+
+ $('#send').click(
+  function(){   
+    var data = 'blok='+$('#blok').val() + '&tc='+$('#tc').val() + '&tel='+$('#tel').val()+ '&sifre='+$('#sifre').val()+ '&daireno='+$('#daireno').val();
+    $.ajax({
+      type: 'POST',
+      url: 'sifremiunuttumajax.php',
+      data: data,
+      success:function(cevap){
         $('#sonuc').html(cevap);
-      } else {
-        window.location.href=cevap;
-      }   
-    }
-  });
+        //gidenForm.reset();
+      }
+    });
 })
 </script>
