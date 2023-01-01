@@ -54,7 +54,7 @@ if(!isset($_SESSION))
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Borç Açıklaması</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ödeme Açıklaması</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Makbuz</th>
                     </tr>
                   </thead>

@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <title>
-   Site Yönetim
+   Kaydol
   </title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -40,14 +40,14 @@
               <div class="card card-plain">
                 <div class="card-header">
                   <h4 class="font-weight-bolder">Kaydol</h4>
-                  <p class="mb-0">Site Yönetim uygulamasına kaydolmak için bilgilerinizi giriniz.</p>
+                  <p class="mb-0">Apartman Yönetim Sistemine kaydolmak için bilgilerinizi giriniz.</p>
                   <i class="material-icons text-danger p-2">warning </i><span class="text-danger"> Telefon numaranızı başında 0 olmadan giriniz. </span>
                 </div>
                 <div class="card-body">
                 <form role="form" id="gidenForm" class="text-start">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">TC Kimlik Numaranız</label>
-                    <input type="number"  max="11" class="form-control" id="tc" required>
+                    <input type="number"  maxlength="11" class="form-control" id="tc" required>
                   </div>
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Adınız ve Soyadınız</label>

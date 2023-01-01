@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 22 Ara 2022, 20:13:31
+-- Üretim Zamanı: 02 Oca 2023, 00:44:40
 -- Sunucu sürümü: 10.4.24-MariaDB
 -- PHP Sürümü: 7.4.29
 
@@ -68,7 +68,9 @@ CREATE TABLE `tblduyuru` (
 --
 
 INSERT INTO `tblduyuru` (`id`, `baslik`, `icerik`, `tip`) VALUES
-(3, 'Tatbikat', 'Akşam sularında apartmanımızda deprem tatbikatı olacaktır bilginize!', 'danger');
+(105, 'Deprem tatbikati olacaktir', 'Deprem tatbikati olacaktir', 'success'),
+(104, 'Aidatlar', 'Aidatlarımızı lütfen zamanında yatıralım!', 'info'),
+(106, 'Çöpleri Zamanında Atalım', 'Lütfen her gün saat 20:00\'da çöplerinizi kapınızın önüne koyunuz!', 'danger');
 
 -- --------------------------------------------------------
 
@@ -80,21 +82,23 @@ CREATE TABLE `tblkullanici` (
   `id` int(255) NOT NULL,
   `adsoyad` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
   `tckimlikno` varchar(11) COLLATE utf8_turkish_ci NOT NULL,
+  `mail` varchar(250) COLLATE utf8_turkish_ci NOT NULL,
   `adres` varchar(500) COLLATE utf8_turkish_ci NOT NULL,
   `tel` varchar(10) COLLATE utf8_turkish_ci NOT NULL,
   `evsahibi` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
   `sifre` varchar(200) COLLATE utf8_turkish_ci NOT NULL,
-  `daireid` int(11) DEFAULT NULL
+  `daireid` int(11) DEFAULT NULL,
+  `yetki` enum('0','1') COLLATE utf8_turkish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `tblkullanici`
 --
 
-INSERT INTO `tblkullanici` (`id`, `adsoyad`, `tckimlikno`, `adres`, `tel`, `evsahibi`, `sifre`, `daireid`) VALUES
-(0, 'Yönetici', '1', '', 'undefined', '', '1', NULL),
-(77, 'mehmet', '12345678910', 'bilecik merkez', '5555555555', 'Ev Sahibi', '123456', 6),
-(79, 'ahmet', '98765432101', 'İstanbul yenisahra', '5555555554', 'Kiracı', '123456', 2);
+INSERT INTO `tblkullanici` (`id`, `adsoyad`, `tckimlikno`, `mail`, `adres`, `tel`, `evsahibi`, `sifre`, `daireid`, `yetki`) VALUES
+(0, 'Yönetici', '1', '', '', 'undefined', '', '1', NULL, '1'),
+(77, 'mehmet', '12345678910', 'komiklinet@gmail.com', 'bilecik merkez', '5555555555', 'Ev Sahibi', '123456', 6, '1'),
+(79, 'ahmet kural', '98765432101', 'alperenyld@gmail.com', 'İstanbul yenisahra', '5555555554', 'Kiracı', '123456', 2, '0');
 
 --
 -- Tetikleyiciler `tblkullanici`
@@ -127,7 +131,9 @@ CREATE TABLE `tblpasif` (
 --
 
 INSERT INTO `tblpasif` (`id`, `daireid`, `kullaniciid`, `adsoyad`, `tckimlikno`, `kalanborc`, `tel`, `evsahibi`, `adres`) VALUES
-(1, 7, 78, 'm', '21', '0.10', '0532', 'Kiracı', 'Asd');
+(1, 7, 78, 'murat ünver', '21212121211', '0.00', '5325325323', 'Kiracı', 'ümraniye'),
+(2, 3, 80, 'hakan dere', '12345678933', '500.00', '5555555556', 'Ev Sahibi', 'Bursa Merkez'),
+(3, 4, 81, 'kemal öz', '12345678915', '500.00', '5555555553', 'Kiracı', 'Beylikdüzü Istanbul');
 
 -- --------------------------------------------------------
 
@@ -151,7 +157,7 @@ CREATE TABLE `tblucret` (
 --
 
 INSERT INTO `tblucret` (`id`, `ucret`, `kismi`, `daireid`, `aciklama`, `nereye`, `odendimi`, `sonodemetarihi`) VALUES
-(21, '500.00', NULL, 1, 'Kira', 'Tüm Dairelere', 0, '2022-12-22'),
+(21, '500.00', '100.00', 1, 'Kira', 'Tüm Dairelere', 0, '2022-12-22'),
 (22, '500.00', NULL, 2, 'Kira', 'Tüm Dairelere', 1, '2022-12-22'),
 (23, '500.00', NULL, 3, 'Kira', 'Tüm Dairelere', 0, '2022-12-22'),
 (24, '500.00', NULL, 4, 'Kira', 'Tüm Dairelere', 0, '2022-12-22'),
@@ -210,19 +216,19 @@ ALTER TABLE `tbldaire`
 -- Tablo için AUTO_INCREMENT değeri `tblduyuru`
 --
 ALTER TABLE `tblduyuru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblkullanici`
 --
 ALTER TABLE `tblkullanici`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblpasif`
 --
 ALTER TABLE `tblpasif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblucret`

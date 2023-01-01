@@ -2,7 +2,7 @@
 include '../connection.php';
 if(isset($_POST['id'])) {
   $id= $_POST['id'];
-    $bilgiGetir = $conn->prepare("Select k.adsoyad, k.tckimlikno, k.adres, k.tel, k.evsahibi, d.daireno, d.blokad from tblkullanici k, tbldaire d where k.daireid=d.id and k.id=$id");
+    $bilgiGetir = $conn->prepare("Select k.adsoyad, k.tckimlikno, k.yetki, k.adres, k.tel, k.evsahibi, d.daireno, d.blokad from tblkullanici k, tbldaire d where k.daireid=d.id and k.id=$id");
     $bilgiGetir->execute();  
     if($bilgiGetir->rowCount()>0) { 
       $bilgiler = $bilgiGetir->fetch(PDO::FETCH_ASSOC);
@@ -18,6 +18,7 @@ if(isset($_POST['id'])) {
       <div class=\"modal-body\">
 
         TC Kimlik No: " .$bilgiler['tckimlikno']. " <br />
+        Onay Durumu: " .$bilgiler['yetki']. " <br />
         Adı Soyadı: " .$bilgiler['adsoyad']. "  <br />
         Adresi: " .$bilgiler['adres']. "  <br />
         Telefonu: 0" .$bilgiler['tel']. " <br />
